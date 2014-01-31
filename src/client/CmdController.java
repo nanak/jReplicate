@@ -46,8 +46,21 @@ public class CmdController {
 	}
 
 	public boolean create_changeQuery(String s) {
-
-		return true;
+		String[] cache = s.split("\\s+");
+		if (cache.length >= 2) {
+			if(cache[1].toUpperCase().equals("CUSTOMER")) {
+				if (cache[3].toLowerCase().equals("")))
+				String query = "UPDATE OR ROLLBACK customer ;"; 
+				return dbConnection.insert(query);
+			} else if (cache[1].toUpperCase().equals("BILL")) {
+				String query = "INSERT INTO bill (id,date,relPath,email) VALUES (" + (this.getBill_Size() + 1) + ",\'" + (new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime())) + "\',\'" + cache[3] + "\',\'" + cache[2] + "\'";
+				return dbConnection.insert(query);
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean create_selectQuery(String s) {
