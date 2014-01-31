@@ -21,7 +21,7 @@ public class DatabaseConnection {
 	/**
 	 * Insert into table
 	 */
-	public void insert(String statement) {
+	public boolean insert(String statement) {
 		Connection c = null;
 		Statement stmt = null;
 		try {
@@ -38,10 +38,10 @@ public class DatabaseConnection {
 			c.commit();
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			return false;
 		}
 		System.out.println("Records created successfully");
+		return true;
 	}
 
 	/**
@@ -74,8 +74,7 @@ public class DatabaseConnection {
 			stmt.close();
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			return null;
 		}
 		System.out.println("Operation done successfully");
 		return al;
@@ -84,7 +83,7 @@ public class DatabaseConnection {
 	/**
 	 * Update statement
 	 */
-	public void update(String statement) {
+	public boolean update(String statement) {
 		Connection c = null;
 		Statement stmt = null;
 		try {
@@ -100,16 +99,16 @@ public class DatabaseConnection {
 			stmt.close();
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			return false;
 		}
 		System.out.println("Operation done successfully");
+		return true;
 	}
 
 	/**
 	 * Delete
 	 */
-	public void delete(String statement) {
+	public boolean delete(String statement) {
 		Connection c = null;
 		Statement stmt = null;
 		try {
@@ -125,9 +124,9 @@ public class DatabaseConnection {
 			stmt.close();
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			return false;
 		}
 		System.out.println("Operation done successfully");
+		return true;
 	}
 }
