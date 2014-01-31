@@ -70,6 +70,18 @@ public class DatabaseConnection {
 					al.add(password);
 				}
 			}
+			if (cache[3].toLowerCase().equals("bill")) {
+				while (rs.next()) {
+					String id = "" + rs.getInt("id");
+					String date = rs.getString("date");
+					String relPath = rs.getString("relPath");
+					String email = rs.getString("email");
+					al.add(id);
+					al.add(date);
+					al.add(relPath);
+					al.add(email);
+				}
+			}
 			rs.close();
 			stmt.close();
 			c.close();

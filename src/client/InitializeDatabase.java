@@ -28,15 +28,19 @@ public class InitializeDatabase {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql1 = "CREATE TABLE customer "
+			String sql1 = "DROP TABLE IF EXISTS customer;"
+					+ "CREATE TABLE customer "
 					+ "(email      TEXT PRIMARY KEY     NOT NULL,"
 					+ " password   TEXT                 NOT NULL)";
 			stmt.executeUpdate(sql1);
 
-			String sql2 = "CREATE TABLE bill "
+			String sql2 = "DROP TABLE IF EXISTS bill;"
+					+ "CREATE TABLE bill "
 					+ "(id      INT PRIMARY KEY     NOT NULL,"
 					+ " date    TEXT                NOT NULL,"
-					+ " relPath TEXT                NOT NULL)";
+					+ " relPath TEXT                NOT NULL,"
+					+ " email	TEXT				NOT NULL,"
+					+ " FOREIGN KEY(email) REFERENCES customer(email))";
 			stmt.executeUpdate(sql2);
 			stmt.close();
 			c.close();
