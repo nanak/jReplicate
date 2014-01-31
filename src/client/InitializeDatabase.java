@@ -34,7 +34,7 @@ public class InitializeDatabase {
 			stmt.executeUpdate(sql1);
 
 			String sql2 = "CREATE TABLE bill "
-					+ "(ID      INT PRIMARY KEY     NOT NULL,"
+					+ "(id      INT PRIMARY KEY     NOT NULL,"
 					+ " date    TEXT                NOT NULL,"
 					+ " relPath TEXT                NOT NULL)";
 			stmt.executeUpdate(sql2);

@@ -53,7 +53,7 @@ public class DatabaseConnection {
 		ArrayList<String> al = new ArrayList<String>();
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection("jdbc:sqlite:db.sqlite");
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -89,7 +89,7 @@ public class DatabaseConnection {
 		Statement stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection("jdbc:sqlite:db.sqlite");
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -114,7 +114,7 @@ public class DatabaseConnection {
 		Statement stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection("jdbc:sqlite:db.sqlite");
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
