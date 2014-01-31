@@ -6,6 +6,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * This class handles the connection with the database
+ * 
+ * Parts of this code are from
+ * http://www.tutorialspoint.com/sqlite/sqlite_java.htm
+ * 
+ * @author nanak
+ * 
+ */
+
 public class DatabaseConnection {
 
 	/**

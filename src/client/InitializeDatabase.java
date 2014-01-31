@@ -4,6 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+/**
+ * This class initialises the database
+ * 
+ * Parts of this code are from
+ * http://www.tutorialspoint.com/sqlite/sqlite_java.htm
+ * 
+ * @author nanak
+ * 
+ */
+
 public class InitializeDatabase {
 
 	/**
@@ -22,7 +32,7 @@ public class InitializeDatabase {
 					+ "(email      TEXT PRIMARY KEY     NOT NULL,"
 					+ " password   TEXT                 NOT NULL)";
 			stmt.executeUpdate(sql1);
-			
+
 			String sql2 = "CREATE TABLE bill "
 					+ "(ID      INT PRIMARY KEY     NOT NULL,"
 					+ " date    TEXT                NOT NULL,"
@@ -36,5 +46,5 @@ public class InitializeDatabase {
 		}
 		System.out.println("Database was successfully created");
 	}
-	
+
 }
