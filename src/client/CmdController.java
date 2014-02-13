@@ -116,9 +116,11 @@ public class CmdController {
 		String[] cache = s.split("\\s+");
 		if (cache.length >= 2) {
 			if (cache[1].toUpperCase().equals("CUSTOMER")) {
-				return dbConnection.delete(cache[2]);
+				String query = "DELETE FROM customer WHERE email =\'" + cache[2].toLowerCase() + "\'";
+				return dbConnection.delete(query);
 			} else if (cache[1].toUpperCase().equals("BILL")) {
-				return dbConnection.delete(cache[2]);
+				String query = "DELETE FROM bill WHERE id =\'" + cache[2].toLowerCase() + "\'";
+				return dbConnection.delete(query);
 			} else {
 				return false;
 			}
