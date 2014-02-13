@@ -113,7 +113,17 @@ public class CmdController {
 	}
 	
 	public boolean create_deleteQuery(String s) {
-		
-		return true;
+		String[] cache = s.split("\\s+");
+		if (cache.length >= 2) {
+			if (cache[1].toUpperCase().equals("CUSTOMER")) {
+				return dbConnection.delete(cache[2]);
+			} else if (cache[1].toUpperCase().equals("BILL")) {
+				return dbConnection.delete(cache[2]);
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }
