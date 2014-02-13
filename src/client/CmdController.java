@@ -1,6 +1,12 @@
 package client;
 
+/**
+ * @author Viktor Kiss
+ * @date 31st of January
+ */
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CmdController {
@@ -49,11 +55,15 @@ public class CmdController {
 		String[] cache = s.split("\\s+");
 		if (cache.length >= 2) {
 			if(cache[1].toUpperCase().equals("CUSTOMER")) {
-				if (cache[3].toLowerCase().equals("")))
-				String query = "UPDATE OR ROLLBACK customer ;"; 
+				String query = null;
+				if (cache[4].toUpperCase().equals("EMAIL")) {
+					query = "UPDATE OR ROLLBACK customer SET email = \'" + cache[5] + "\' WHERE email = \'" + cache[2] + "\';"; 
+				} else if (cache[4].toUpperCase().equals("PASSWORD")) {
+					query = "UPDATE OR ROLLBACK customer SET password = \'" + cache[5] + "\' WHERE email = \'" + cache[2] + "\';";
+				}
 				return dbConnection.insert(query);
 			} else if (cache[1].toUpperCase().equals("BILL")) {
-				String query = "INSERT INTO bill (id,date,relPath,email) VALUES (" + (this.getBill_Size() + 1) + ",\'" + (new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime())) + "\',\'" + cache[3] + "\',\'" + cache[2] + "\'";
+				String query = "UPDATE OR ROLLBACK bill SET relPath = \'" + cache[4] + "\' WHERE (email = \'" + cache[2] + "\') AND (relPath = \'" + cache[3] + "\');";
 				return dbConnection.insert(query);
 			} else {
 				return false;
@@ -63,9 +73,43 @@ public class CmdController {
 		}
 	}
 	
-	public boolean create_selectQuery(String s) {
-		
-		return true;
+	public String create_selectQuery(String s) {
+		String[] cache = s.split("\\s+");
+		if (cache.length >= 2) {
+			if (cache[1].toUpperCase().equals("CUSTOMER")) {
+				ArrayList<String> results = dbConnection.select("SELECT * FROM customer;");
+				String resultToPrint = "";
+				for (int i = 1; i <= results.size(); i++) {
+					if (i % 2 == 1) {
+						resultToPrint += "Mail-Adress: \t" + results.get(i-1) + "\n";
+					} else {
+						resultToPrint += "Password: \t" + results.get(i-1) + "\n \n";
+					}
+				}
+				
+				return resultToPrint;
+			} else if (cache[1].toUpperCase().equals("BILLS")) {
+				ArrayList<String> results = dbConnection.select("SELECT * FROM bill;");
+				String resultToPrint = "";
+				for (int i = 1; i <= results.size(); i++) {
+					if (i % 4 == 1) {
+						resultToPrint += "Bill_ID: \t" + results.get(i-1) + "\n";
+					} else if (i % 4 == 2) {
+						resultToPrint += "Bill_Date: \t" + results.get(i-1) + "\n";
+					} else if (i % 4 == 3) {
+						resultToPrint += "PDF_Path: \t" + results.get(i-1) + "\n";
+					} else if (i % 4 == 0) {
+						resultToPrint += "Mail of customer: \t" + results.get(i-1) + "\n \n";
+					}
+				}
+				
+				return resultToPrint;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 	
 	public boolean create_deleteQuery(String s) {
