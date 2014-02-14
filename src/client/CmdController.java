@@ -5,28 +5,61 @@ package client;
  * @date 31st of January
  */
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Vector;
 
 public class CmdController {
 	
 	private DatabaseConnection dbConnection;
+	public Client client;
+	public static Socket socket;
+	private boolean isRunning;
+	private Vector<String> queryQueue;
+	public ReceivingThread rThread;
+	
+	
+	public CmdController(Client c) throws UnknownHostException, IOException {
+		this.client = c;
+		this.isRunning = true;
+		this.queryQueue = new Vector<String>();
+		socket = new Socket(c.getIP(), c.getPort());
+		this.rThread = new ReceivingThread(socket, this, this.dbConnection, this.client.getReiceivingPort());
+	}
+	
 	
 	public boolean checkInput(String s) {
+		boolean rValue = false;
+		PrintWriter pw;
+		try {
+			pw = new PrintWriter(socket.getOutputStream());
+		} catch (IOException e) {
+			return false;
+		}
 		String[] cache = s.split(" ");
 		if (cache.length >= 1) {
 			if (cache[0].toUpperCase().equals("CREATE")) {
-				this.create_insertQuery(s);
+				rValue = this.create_insertQuery(s);
+				if (rValue)
+					pw.print(s);
 			} else if (cache[0].toUpperCase().equals("CHANGE")) {
-				this.create_changeQuery(s);
+				rValue =  this.create_changeQuery(s);
+				if (rValue)
+					pw.print(s);
 			} else if (cache[0].toUpperCase().equals("DELETE")) {
-				
+				rValue =  this.create_deleteQuery(s);
+				if (rValue)
+					pw.print(s);
 			} else if (cache[0].toUpperCase().equals("SHOW")) {
-				
-			}
+				this.create_selectQuery(s);
+			} 
 		}
-		return true;
+		return false;
 	}
 	
 	public int getBill_Size() {
@@ -127,5 +160,9 @@ public class CmdController {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean isServerRunning() {
+		return this.isRunning;
 	}
 }
