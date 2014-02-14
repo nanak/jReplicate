@@ -47,6 +47,12 @@ public class ReplicationManager {
 				replicate.outboundPort1, replicate.outboundAddress2,
 				replicate.outboundPort2, replicate);
 		new Thread(replicate.in).start();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		new Thread(replicate.out).start();
 	}
 
