@@ -5,18 +5,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Inbound implements Runnable {
+public class Inbound implements Runnable{
 	
 	private ServerSocket server;
 	private Scanner scanner;
 	private int port;
+	private ReplicationManager replicate;
 
 	public Inbound(){
 		this.port = 50000;
 	}
 	
-	public Inbound(int port){
+	public Inbound(int port, ReplicationManager replicate){
 		this.port = port;
+		this.replicate = replicate;
 	}
 
 	@Override
@@ -41,6 +43,7 @@ public class Inbound implements Runnable {
 					try {
 						client.close();
 					} catch (IOException e) {
+						e.printStackTrace();
 					}
 			}
 
@@ -48,9 +51,9 @@ public class Inbound implements Runnable {
 
 	}
 	
-	public String handleConnection(Socket client) throws IOException {
+	public void handleConnection(Socket client) throws IOException {
 		scanner = new Scanner(client.getInputStream());
-		return scanner.nextLine();
+		replicate.setInString(scanner.nextLine());
 	}
 
 }
