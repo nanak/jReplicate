@@ -1,0 +1,188 @@
+commit 091f585bf3f3195542d656a38adb32e4a4c7bea0
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Feb 14 11:22:43 2014 +0100
+
+    added 10sec socket starting delay for time to start client
+
+ src/manager/ReplicationManager.java | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 23eb2b93dbea7e0783bb93650c6702dd62fa9b76
+Author: Viktor Kiss <viktor.kiss@student.tgmac.at>
+Date:   Fri Feb 14 04:47:44 2014 +0100
+
+    +client should work now
+    
+    +CmdController got a new attrubut
+    +implemented a receivingThread for communications with the replicationMangaer
+
+ src/client/Client.java          | 71 ++++++++++++++++++++++++++++++++++++++---
+ src/client/CmdController.java   | 49 ++++++++++++++++++++++++----
+ src/client/ReadStdIn.java       | 25 ---------------
+ src/client/ReceivingThread.java | 55 +++++++++++++++++++++++++++++++
+ 4 files changed, 164 insertions(+), 36 deletions(-)
+
+commit cb4098c025351ec9871d26fff32e5cbb4525805a
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Feb 14 04:13:58 2014 +0100
+
+    pfusch solution, TODO: test if it actually works
+
+ src/manager/Outbound.java           | 31 +++++++++++++++++----------
+ src/manager/ReplicationManager.java | 42 ++++++++++++++++++++-----------------
+ 2 files changed, 43 insertions(+), 30 deletions(-)
+
+commit 53877264e5e896d4077de7431c42942da5fbb0a2
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Feb 14 03:21:51 2014 +0100
+
+    inbound and outbound connection *should* work now
+
+ src/manager/Inbound.java            | 11 +++++---
+ src/manager/Outbound.java           | 56 +++++++++++++++++++++++++++++++++++++
+ src/manager/ReplicationManager.java | 43 ++++++++++++++++++++++++++--
+ 3 files changed, 103 insertions(+), 7 deletions(-)
+
+commit 8a308819fbceb7572a9b4a5020646daa60ae6c33
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Feb 14 02:12:29 2014 +0100
+
+    outsourced inbound connection to extra class and implemented it
+
+ src/manager/Inbound.java            | 56 +++++++++++++++++++++++++++++++++++++
+ src/manager/ReplicationManager.java | 46 ++++--------------------------
+ 2 files changed, 62 insertions(+), 40 deletions(-)
+
+commit 1bce908144f59039145a30eccbaaa86b5a261973
+Author: Viktor Kiss <viktor.kiss@student.tgmac.at>
+Date:   Thu Feb 13 20:12:17 2014 +0100
+
+    created the queries xD
+
+ src/client/CmdController.java | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit a41aaebd4d5805993122098653d19cfd9003adbc
+Author: Viktor Kiss <viktor.kiss@student.tgmac.at>
+Date:   Thu Feb 13 19:52:44 2014 +0100
+
+    +added "delete"-mapper
+
+ src/client/CmdController.java | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+commit 5bb7ddcc1c1c6934f860f1e0f69a4db73aa845f1
+Merge: 2722992 4cb0328
+Author: Viktor Kiss <vkiss@student.tgm.ac.at>
+Date:   Thu Feb 13 19:28:31 2014 +0100
+
+    Merge branch 'master' of https://github.com/nanak/jReplicate
+
+commit 2722992145f1912d47798d920a15f9fd6fb8a8bc
+Author: Viktor Kiss <vkiss@student.tgm.ac.at>
+Date:   Thu Feb 13 19:25:24 2014 +0100
+
+    +added the "create"-mapper
+
+ src/client/CmdController.java | 56 ++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 50 insertions(+), 6 deletions(-)
+
+commit 4cb03287fbfd16166cc894aa7c4afc6ca22750c4
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 11:24:22 2014 +0100
+
+    started implementation of replication manager: communication per sockets
+
+ src/manager/ReplicationManager.java | 61 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 59 insertions(+), 2 deletions(-)
+
+commit 41408f555b2ccdad848e7f9b4164069407344244
+Author: Viktor Kiss <viktor.kiss@student.tgmac.at>
+Date:   Fri Jan 31 09:47:07 2014 +0100
+
+    continued implementation
+
+ src/client/CmdController.java | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+commit 67c64f8680ecbb3025f3f91703fa5cee564a0c40
+Author: Vrikancs <viktor.kiss@student.tgmac.at>
+Date:   Fri Jan 31 04:17:02 2014 +0100
+
+    started implementation
+
+ src/client/Client.java        | 14 +++++++++++
+ src/client/CmdController.java | 57 +++++++++++++++++++++++++++++++++++++++++++
+ src/client/ReadStdIn.java     | 25 +++++++++++++++++++
+ 3 files changed, 96 insertions(+)
+
+commit 3149a07881fe420356e08fb499b8d188230e77a4
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 04:03:07 2014 +0100
+
+    added foreign key at database creation, added result for bill
+
+ src/client/DatabaseConnection.java | 12 ++++++++++++
+ src/client/InitializeDatabase.java | 10 +++++++---
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+
+commit bbafe08c49aaa88b01d0e19b4c7ed7874e826f57
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 02:04:17 2014 +0100
+
+    useful return values
+
+ src/client/DatabaseConnection.java | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
+
+commit 2834de81cd7e99514aa08abba9921d01c9979f8d
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 01:59:15 2014 +0100
+
+    connect to the right database, id now lower case
+
+ src/client/DatabaseConnection.java | 6 +++---
+ src/client/InitializeDatabase.java | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 9f0e603d77c3df0ec491864ac5f62e413e1d9826
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 01:52:32 2014 +0100
+
+    added comments
+
+ src/client/DatabaseConnection.java | 10 ++++++++++
+ src/client/InitializeDatabase.java | 14 ++++++++++++--
+ 2 files changed, 22 insertions(+), 2 deletions(-)
+
+commit e9957020129e506a4c5acd5b219a7d52a9e36435
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Fri Jan 31 01:50:00 2014 +0100
+
+    added database connection and database initialisation
+
+ src/client/DatabaseConnection.java | 118 +++++++++++++++++++++++++++++++++++++
+ src/client/InitializeDatabase.java |  40 +++++++++++++
+ 2 files changed, 158 insertions(+)
+
+commit 2df3f4ce948e19afb87bf0ea347c33c78fface9c
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Thu Jan 30 22:59:05 2014 +0100
+
+    ordnerstruktur und leere klassen
+
+ src/client/Client.java              | 5 +++++
+ src/client/CmdController.java       | 5 +++++
+ src/client/DatabaseConnection.java  | 5 +++++
+ src/manager/ReplicationManager.java | 5 +++++
+ 4 files changed, 20 insertions(+)
+
+commit 1182b87abaeb86c2a8c643ea7d708d33161deccf
+Author: Nanak Tattyrek <nanak@tattyrek.at>
+Date:   Wed Jan 29 13:47:32 2014 -0800
+
+    Initial commit
+
+ .gitignore | 6 ++++++
+ README.md  | 2 ++
+ 2 files changed, 8 insertions(+)
