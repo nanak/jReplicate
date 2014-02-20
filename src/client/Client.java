@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client {
 
@@ -19,13 +18,11 @@ public class Client {
 	}
 	
 	public static void main(String args[]) {
-		Client c = new Client(args[0]);
-		try {
-			c.cmd = new CmdController(c);
-		} catch (IOException e) {
-			System.out.println("The was an error with the parameters! Please check your input and start the program again!");
-			System.exit(0);
+		Client c = null;
+		if (args.length >= 4) {
+			c = new Client(args[0]);
 		}
+		
 		
 		c.port = 50000;
 		c.reveivingPort = 50001;
@@ -34,7 +31,7 @@ public class Client {
 			c.port = Integer.parseInt(args[2]);
 			c.reveivingPort = Integer.parseInt(args[3]);
 			socket = new Socket(args[1], c.port);
-			
+			c.cmd = new CmdController(c);
 		} catch (NumberFormatException | IOException e) {
 			if (e.getClass().equals(NumberFormatException.class)) {
 				System.out.println("WARNING: The port is set to 50000 because the second argument was invailed! \n If you want to use another port please restart the programm!");
