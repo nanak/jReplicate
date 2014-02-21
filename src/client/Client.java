@@ -7,6 +7,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+ * this class implements the client
+ * @author Nanak Tattyrek
+ *
+ */
 public class Client {
 
 	private CmdController cmd;
@@ -15,6 +20,10 @@ public class Client {
 	private int reveivingPort;
 	private String ip;
 
+	/**
+	 * konstruktor
+	 * @param name name of the client
+	 */
 	public Client(String name) {
 		this.name = name;
 		this.port = 50000;
@@ -22,6 +31,10 @@ public class Client {
 		this.ip = "127.0.0.1";
 	}
 
+	/**
+	 * main method
+	 * @param args parameters
+	 */
 	public static void main(String args[]) {
 		Client c = null;
 		try {
@@ -60,18 +73,34 @@ public class Client {
 		}
 	}
 
+	/**
+	 * get the name of the client 
+	 * @return the name of the client
+	 */
 	public String getName() {
 		return this.getName();
 	}
 
+	/**
+	 * get the ip of the client
+	 * @return the ip of the client
+	 */
 	public String getIP() {
 		return this.ip;
 	}
 
+	/**
+	 * get the port of the client
+	 * @return the port of the client
+	 */
 	public int getPort() {
 		return this.port;
 	}
 
+	/**
+	 * get the receiving port of the client
+	 * @return the receiving port of the client
+	 */
 	public int getReiceivingPort() {
 		return this.reveivingPort;
 	}

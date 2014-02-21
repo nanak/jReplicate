@@ -6,6 +6,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * this class handles the outbound connection
+ * @author Nanak Tattyrek
+ *
+ */
 public class Outbound implements Runnable {
 
 	private Socket client = new Socket();
@@ -18,6 +23,9 @@ public class Outbound implements Runnable {
 	private ReplicationManager replicate;
 
 
+	/**
+	 * default constructor
+	 */
 	public Outbound() {
 		this.serverAddress1 = "127.0.0.1";
 		this.serverPort1 = 50001;
@@ -26,6 +34,16 @@ public class Outbound implements Runnable {
 		this.message = "";
 	}
 
+	/**
+	 * constructor
+	 * attributes are called serveraddress and serverclient because
+	 * the client is a server from this perspectice
+	 * @param serverAddress1 address of client 1
+	 * @param serverPort1 port of client 1
+	 * @param serverAddress2 address of client 2
+	 * @param serverPort2 port of client 2
+	 * @param replicate instance of the replicationmanager
+	 */
 	public Outbound(String serverAddress1, int serverPort1, String serverAddress2, int serverPort2, ReplicationManager replicate) {
 		this.serverAddress1 = serverAddress1;
 		this.serverPort1 = serverPort1;
@@ -35,6 +53,9 @@ public class Outbound implements Runnable {
 		this.replicate = replicate;
 	}
 
+	/**
+	 * run method, implements the logic for the thread
+	 */
 	@Override
 	public void run() {
 		Socket client1 = null;
@@ -57,6 +78,12 @@ public class Outbound implements Runnable {
 		}
 	}
 	
+	/**
+	 * this method handles the connection itself
+	 * @param client Socket instance
+	 * @param message message to send
+	 * @throws IOException if any input/output operations fails
+	 */
 	public void handleConnection(Socket client, String message) throws IOException {
 		PrintWriter pw = new PrintWriter(new PrintWriter(new OutputStreamWriter(client.getOutputStream())));
 		pw.print(replicate.getInString());

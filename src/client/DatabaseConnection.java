@@ -19,7 +19,9 @@ import java.util.ArrayList;
 public class DatabaseConnection {
 
 	/**
-	 * Insert into table
+	 * Insert statement executor
+	 * @param statement the insert statement
+	 * @return true if successful, false if not
 	 */
 	public boolean insert(String statement) {
 		Connection c = null;
@@ -45,7 +47,9 @@ public class DatabaseConnection {
 	}
 
 	/**
-	 * Select Query
+	 * Select statement executor
+	 * @param statement the select statement
+	 * @return an arraylist of the results
 	 */
 	public ArrayList<String> select(String statement) {
 		Connection c = null;
@@ -93,7 +97,9 @@ public class DatabaseConnection {
 	}
 
 	/**
-	 * Update statement
+	 * Update statement executor
+	 * @param statement the update statement
+	 * @return true if successful, false if not
 	 */
 	public boolean update(String statement) {
 		Connection c = null;
@@ -118,7 +124,9 @@ public class DatabaseConnection {
 	}
 
 	/**
-	 * Delete
+	 * Delete statement executor
+	 * @param statement the delete statement
+	 * @return true if successful, false if not
 	 */
 	public boolean delete(String statement) {
 		Connection c = null;

@@ -18,6 +18,7 @@ public class InitializeDatabase {
 
 	/**
 	 * Initialize Database
+	 * creates the needed tables
 	 */
 	public static void main(String[] args) {
 		Connection c = null;
