@@ -32,14 +32,11 @@ public class Client {
 			System.exit(0);
 		}
 
-		Socket socket = null;
-
 		try {
 			c.port = Integer.parseInt(args[2]);
-			socket = new Socket(args[1], c.port);
 			c.reveivingPort = Integer.parseInt(args[3]);
 			c.cmd = new CmdController(c);
-
+			c.cmd.setSocket(c.ip, c.port);
 		} catch (NumberFormatException | IOException e) {
 			if (e.getClass().equals(NumberFormatException.class)) {
 				System.out
@@ -52,8 +49,8 @@ public class Client {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 		boolean goOn = true;
 		String line = null;
-		while ((line = sc.nextLine()) != null && goOn) {
-			System.out.println("StdIn: " + line);
+		while (goOn) {
+			line = sc.nextLine();
 			if (line.toUpperCase().equals("EXIT")) {
 				goOn = false;
 				System.out.println("Thread will be terminated!");

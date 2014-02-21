@@ -18,7 +18,7 @@ public class CmdController {
 	
 	private DatabaseConnection dbConnection;
 	public Client client;
-	public static Socket socket;
+	private Socket socket;
 	private boolean isRunning;
 	private Vector<String> queryQueue;
 	public ReceivingThread rThread;
@@ -28,8 +28,13 @@ public class CmdController {
 		this.client = c;
 		this.isRunning = true;
 		this.queryQueue = new Vector<String>();
-		socket = new Socket(c.getIP(), c.getPort());
-		this.rThread = new ReceivingThread(socket, this, this.dbConnection, this.client.getReiceivingPort());
+//		socket = new Socket(c.getIP(), c.getPort());
+		this.dbConnection = new DatabaseConnection();
+//		this.rThread = new ReceivingThread(socket, this, this.dbConnection, this.client.getReiceivingPort());
+	}
+	
+	public void setSocket(String ip, int port) throws UnknownHostException, IOException {
+		this.socket = new Socket(ip, port);
 	}
 	
 	
@@ -39,6 +44,7 @@ public class CmdController {
 		try {
 			pw = new PrintWriter(socket.getOutputStream());
 		} catch (IOException e) {
+			e.printStackTrace();
 			return false;
 		}
 		String[] cache = s.split(" ");
