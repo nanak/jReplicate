@@ -15,11 +15,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-/**
- * this class implements the client
- * @author Nanak Tattyrek
- *
- */
 public class Client {
 
 	// Attribute
@@ -30,15 +25,10 @@ public class Client {
 	private String ip; // dies ist die IP des Replikationsservers
 
 	/**
-<<<<<<< HEAD
-	 * konstruktor
-	 * @param name name of the client
-=======
 	 * Der Konstruktor der Klasse <br>
 	 * Uebergeben wird lediglich der Name des Clients bzw. der Filiale. Die restlichen Attribute bekommen default Werte zugewiesen.<br>
 	 * Diese werden im Zuge der Main-Methode mit den uebergebenen Arguments ueberschrieben
 	 * @param name der Name des Clients
->>>>>>> 7b103504e709b7b0c451e072f3d352e62efbd75a
 	 */
 	public Client(String name) {
 		this.name = name;
@@ -48,17 +38,12 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * main method
-	 * @param args parameters
-=======
 	 * Dies ist die Main-Methode der Klasse.
 	 * @param args die Parameter in folgender Reihenfolge: <br>
 	 * --> Name des Clients <br>
 	 * --> IP des Replikationsservers <br>
 	 * --> Port des Replikationsservers <br> 
 	 * --> Listening-Port des Clients <br>
->>>>>>> 7b103504e709b7b0c451e072f3d352e62efbd75a
 	 */
 	public static void main(String args[]) {
 		Client c = null;
